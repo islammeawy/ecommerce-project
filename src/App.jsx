@@ -3,7 +3,7 @@ import { CheckoutPage } from './pages/CheckoutPage'
 import { Orders } from './pages/orders'
 import { Routes, Route } from 'react-router-dom'
 import './pages/home.css'
-import './pages/header.css'
+import './Components/Header.css'
 
 function App() {
   return (
