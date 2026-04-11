@@ -1,5 +1,5 @@
 import { Home } from './pages/home'
-import { CheckoutPage } from './pages/CheckoutPage'
+import { CheckoutPage } from './pages/Checkout/CheckoutPage'
 import { Orders } from './pages/orders'
 import { Routes, Route } from 'react-router-dom'
 import './pages/home.css'
