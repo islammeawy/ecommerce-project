@@ -103,7 +103,7 @@
   justify-content: end;
 }
 
-.header .orders-link {
+.header .orders-NavLink {
   color: white;
   text-decoration: none;
   display: flex;
@@ -115,12 +115,12 @@
   transition: border 0.2s;
 }
 
-.header .orders-link:hover {
+.header .orders-NavLink:hover {
   border: 1px solid white;
   border-radius: 2px;
 }
 
-.header .orders-link:active {
+.header .orders-NavLink:active {
   text-decoration: underline;
   border: 1px solid white;
   border-radius: 2px;
@@ -132,7 +132,7 @@
   font-weight: 700;
 }
 
-.header .cart-link {
+.header .cart-NavLink {
   color: white;
   text-decoration: none;
   display: flex;
@@ -145,11 +145,11 @@
   transition: border 0.2s;
 }
 
-.header .cart-link:hover {
+.header .cart-NavLink:hover {
   border: 1px solid white;
 }
 
-.header .cart-link:active {
+.header .cart-NavLink:active {
   text-decoration: underline;
 }
 
@@ -164,14 +164,19 @@
 }
 
 .header .cart-quantity {
-  color: rgb(8, 79, 45);
-  font-size: 14px;
+  color: white;
+  background-color: rgb(255, 67, 54);
+  font-size: 12px;
   font-weight: 700;
 
   position: absolute;
-  top: 8.5px;
-  right: 46px;
+  top: -5px;
+  right: 8px;
 
-  width: 26px;
-  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
