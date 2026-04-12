@@ -5,6 +5,7 @@ export function Orders() {
   return (
     <>
       <title>Orders</title>
+      <link rel="icon" type="image/svg+xml" href="../public/images/icons/orders-favicon.png " />
       <Header />
 
       <div className="orders-page">
@@ -53,7 +54,7 @@ export function Orders() {
               </div>
 
               <div className="product-actions">
-                <a href="/traking">
+                <a href="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>
@@ -81,7 +82,7 @@ export function Orders() {
               </div>
 
               <div className="product-actions">
-                <a href="/traking">
+                <a href="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>
@@ -132,7 +133,7 @@ export function Orders() {
               </div>
 
               <div className="product-actions">
-                <a href="/traking">
+                <a href="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>

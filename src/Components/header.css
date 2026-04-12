@@ -105,11 +105,25 @@
 
 .header .orders-link {
   color: white;
-
+  text-decoration: none;
   display: flex;
   align-items: center;
   padding-left: 13px;
   padding-right: 13px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border 0.2s;
+}
+
+.header .orders-link:hover {
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+.header .orders-link:active {
+  text-decoration: underline;
+  border: 1px solid white;
+  border-radius: 2px;
 }
 
 .header .orders-text {
@@ -120,9 +134,23 @@
 
 .header .cart-link {
   color: white;
+  text-decoration: none;
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
+  padding-left: 13px;
+  padding-right: 13px;
+  border-radius: 2px;
+  transition: border 0.2s;
+}
+
+.header .cart-link:hover {
+  border: 1px solid white;
+}
+
+.header .cart-link:active {
+  text-decoration: underline;
 }
 
 .header .cart-icon {
