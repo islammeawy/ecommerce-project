@@ -9,11 +9,20 @@ export function Home({ cart }) {
 
 
   useEffect(() => {
-    axios.get('/api/products')
-      .then((response) => {
+    const getHomeProducts = async () => {
+      try {
+        const response = await axios.get('/api/products');
         setProducts(response.data);
-      });
+      } catch (error) {
+        console.error('Error fetching home products:', error);
+      }
+    };
+
+    getHomeProducts();
   }, []);
+      
+    
+    
 
 
   return (
