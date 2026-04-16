@@ -9,6 +9,8 @@ export function Home({ cart }) {
 
 
   useEffect(() => {
+    console.log('Fetching home products...'); // Debugging log
+    
     const getHomeProducts = async () => {
       try {
         const response = await axios.get('/api/products');
