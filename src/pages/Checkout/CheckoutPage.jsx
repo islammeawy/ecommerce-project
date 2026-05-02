@@ -7,7 +7,7 @@ import { PaymentSummary } from "./PaymentSummary";
 
 
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart,  }) {
   const [deliveryOption, setDeliveryOption] = useState("");
   const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -27,7 +27,7 @@ export function CheckoutPage({ cart }) {
       }
     }
     fetchCheckoutData();
-  }, []);
+  }, [cart]);
 
 
   return (

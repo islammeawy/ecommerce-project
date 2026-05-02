@@ -4,7 +4,7 @@ import { CartItemDetails } from "./CartItemDetails";
 
 
 
-export function OrderSummary({ cart, deliveryOptions }) {
+export function OrderSummary({ cart = [], deliveryOptions = [] }) {
   return (
     <div className="order-summary">
       {deliveryOptions.length > 0 && cart.map((cartItem) => {
