@@ -12,7 +12,10 @@ export default function Product({ product, fetchCart }) {
           });
           await fetchCart(); // Call fetchCart to update the cart state
         };
-
+  const selectQuantity = (e) => {
+            const selectedQuantity = parseInt(e.target.value);
+            setQuantity(selectedQuantity);
+          }
   return (
     <div  className="product-container">
       <div className="product-image-container">
@@ -39,9 +42,7 @@ export default function Product({ product, fetchCart }) {
       <div className="product-quantity-container">
         <select className="product-quantity-select"
           value={quantity}
-          onChange={(e) => {
-            const selectedQuantity = parseInt(e.target.value);
-            setQuantity(selectedQuantity);
+          onChange={(e) => {selectQuantity(e) 
           }}>
           <option value="1">1</option>
           <option value="2">2</option>
