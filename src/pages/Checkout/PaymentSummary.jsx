@@ -1,6 +1,22 @@
 import { formatPrice } from '../../utils/money'
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
-export function PaymentSummary({ paymentSummary }) {
+export function PaymentSummary({ paymentSummary  , fetchCart }) {
+  const navigate = useNavigate();
+  const createOrder = async () => {
+    try {
+      await axios.post('/api/orders' , {});
+        await fetchCart(); 
+        navigate('/orders');  
+      // Clear the cart after order creation
+      // Handle successful order creation (e.g., redirect, show confirmation)
+    } catch (error) {
+      console.error('Error creating order:', error);
+      // Handle error (e.g., show error message)
+    }
+  };
+
   return (
     <div className="payment-summary">
       <div className="payment-summary-title">
@@ -32,7 +48,9 @@ export function PaymentSummary({ paymentSummary }) {
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.totalCents) : "Loading..."}</div>
       </div>
 
-      <button className="place-order-button button-primary">
+      <button className="place-order-button button-primary"
+
+        onClick={createOrder}>
         Place your order
       </button>
     </div>
