@@ -3,17 +3,20 @@ import { Header } from '../../Components/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ProductGrid } from './ProductGrid';
+import { useSearchParams } from 'react-router';
 
-export function Home({ cart }) {
+export function Home({ cart, fetchCart }) {
   const [products, setProducts] = useState([]);
-
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search') || '';
 
   useEffect(() => {
     console.log('Fetching home products...'); // Debugging log
     
     const getHomeProducts = async () => {
       try {
-        const response = await axios.get('/api/products');
+        const urlPath = search ? `/api/products?search=${search}` : '/api/products';
+        const response = await axios.get(urlPath);
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching home products:', error);
@@ -21,7 +24,7 @@ export function Home({ cart }) {
     };
 
     getHomeProducts();
-  }, []);
+  }, [search]);
       
     
     
@@ -34,7 +37,7 @@ export function Home({ cart }) {
       <Header cart = {cart} />
 
       <div className="home-page">
-        <ProductGrid products={products} />
+        <ProductGrid products={products} fetchCart={fetchCart} />
       </div>
     </>
   );

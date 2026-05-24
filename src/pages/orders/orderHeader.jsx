@@ -11,7 +11,7 @@ export function OrderHeader({ order }) {
         </div>
         <div className="order-total">
           <div className="order-header-label">Total:</div>
-          <div>{formatPrice(order.totalCostCent)}</div>
+          <div>{formatPrice(order.totalCostCents)}</div>
         </div>
       </div>
 

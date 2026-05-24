@@ -24,9 +24,11 @@ function App() {
     fetchCart();
   }, []);
 
+  
   return (
     <Routes>
       <Route index element={<Home cart={cart} fetchCart={fetchCart} />} />
+      <Route path="/search" element={<Home cart={cart} fetchCart={fetchCart} />} />
       <Route path="/checkout" element={<CheckoutPage cart={cart} fetchCart={fetchCart} />} />
       <Route path="/orders" element={<Orders cart={cart} fetchCart={fetchCart} />} />
       <Route path="/tracking/:orderId/:productId" element={<TrackingPage cart={cart} fetchCart={fetchCart} />} />

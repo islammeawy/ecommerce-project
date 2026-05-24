@@ -4,7 +4,7 @@ import { useState, useEffect, Fragment } from "react";
 import { Header } from "../../Components/Header";
 import { OrdersGrid } from "./ordersGrid";
 
-export function Orders() {
+export function Orders( {cart , fetchCart} ) {
 
 
   const [orders, setOrders] = useState([]);
@@ -26,11 +26,11 @@ export function Orders() {
     <>
       <title>Orders</title>
       <link rel="icon" type="image/svg+xml" href="../public/images/icons/orders-favicon.png " />
-      <Header cart={[]} />
+      <Header cart={cart} />
 
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
-       <OrdersGrid orders={orders} />
+       <OrdersGrid orders={orders} fetchCart={fetchCart} />
       </div>
     </>
   );

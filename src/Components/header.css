@@ -165,13 +165,14 @@
 
 .header .cart-quantity {
   color: white;
-  background-color: rgb(255, 67, 54);
+  background-color: rgb(25, 135, 84);
   font-size: 12px;
   font-weight: 700;
 
   position: absolute;
-  top: -5px;
-  right: 8px;
+  top: 31%;
+  left: 35%;
+  transform: translate(-50%, -50%);
 
   width: 20px;
   height: 20px;

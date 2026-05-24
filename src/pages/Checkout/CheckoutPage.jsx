@@ -12,6 +12,25 @@ export function CheckoutPage({ cart, fetchCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
+
+    
+useEffect(() => {
+
+  const getPaymentSummary = async () => {
+    try {
+      const paymentResponse = await axios.get('/api/payment-summary');
+
+      setPaymentSummary(paymentResponse.data);
+
+    } catch (error) {
+      console.error('Error fetching payment summary:', error);
+    }
+  };
+
+  getPaymentSummary();
+
+}, [cart]);
+
   useEffect(() => {
     const fetchCheckoutData = async () => {
       try {
@@ -20,9 +39,6 @@ export function CheckoutPage({ cart, fetchCart }) {
 
         const deliveryResponse = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
         setDeliveryOptions(deliveryResponse.data);
-
-        const paymentResponse = await axios.get('/api/payment-summary');
-        setPaymentSummary(paymentResponse.data);
       }
       catch (error) {
         console.error('Error fetching checkout data:', error);
