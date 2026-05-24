@@ -33,6 +33,7 @@ export default function Product({ product, fetchCart }) {
     <div  className="product-container">
       <div className="product-image-container">
         <img className="product-image"
+          data-testid="product-image"
           src={product.image} />
       </div>
 
@@ -42,6 +43,7 @@ export default function Product({ product, fetchCart }) {
 
       <div className="product-rating-container">
         <img className="product-rating-stars"
+          data-testid="product-rating-stars"
           src={`images/ratings/rating-${Math.round(product.rating.stars * 10)}.png`} />
         <div className="product-rating-count link-primary">
           {product.ratingCount}
