@@ -8,29 +8,31 @@ export default function Product({ product, fetchCart }) {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const handleAddToCart = async () => {
-          await axios.post("/api/cart-items", {
-            productId: product.id,
-            quantity
-          });
-          await fetchCart(); // Call fetchCart to update the cart state
-          setAddedToCart(true);
+    await axios.post("/api/cart-items", {
+      productId: product.id,
+      quantity
+    });
+    await fetchCart(); // Call fetchCart to update the cart state
+    setAddedToCart(true);
 
-          setTimeout(()=> {
-            setAddedToCart(false);
-            }, 2000);
-          }
-        
-  
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 2000);
+  }
+
+
 
 
   const selectQuantity = (e) => {
-            const selectedQuantity = parseInt(e.target.value);
-            setQuantity(selectedQuantity);
-          }
+    const selectedQuantity = parseInt(e.target.value);
+    setQuantity(selectedQuantity);
+  }
 
 
   return (
-    <div  className="product-container">
+    <div className="product-container"
+      data-testid="product-container">
+    
       <div className="product-image-container">
         <img className="product-image"
           data-testid="product-image"
@@ -57,7 +59,8 @@ export default function Product({ product, fetchCart }) {
       <div className="product-quantity-container">
         <select className="product-quantity-select"
           value={quantity}
-          onChange={(e) => {selectQuantity(e) 
+          onChange={(e) => {
+            selectQuantity(e)
           }}>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -80,7 +83,7 @@ export default function Product({ product, fetchCart }) {
       </div>
 
       <button className="add-to-cart-button button-primary"
-      data-testid="add-to-cart-button"
+        data-testid="add-to-cart-button"
 
         onClick={handleAddToCart}>
         Add to Cart
