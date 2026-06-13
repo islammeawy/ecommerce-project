@@ -59,6 +59,7 @@ export default function Product({ product, fetchCart }) {
       <div className="product-quantity-container">
         <select className="product-quantity-select"
           value={quantity}
+          data-testid="product-quantity-select"
           onChange={(e) => {
             selectQuantity(e)
           }}>

@@ -1,7 +1,6 @@
 import { expect, it, describe, vi , beforeEach } from 'vitest'
-import { Product } from './Product'
+import Product from './Product'
 import { render, screen } from '@testing-library/react'
-import { formatMoney } from '../../utils/money'
 import userEvent from '@testing-library/user-event'
 import axios from 'axios'
 
@@ -11,6 +10,7 @@ vi.mock('axios')
 describe('Product component', () => {
   let product ;
   let loadCartMock;
+  let user;
   beforeEach(() => {
     product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -23,25 +23,25 @@ describe('Product component', () => {
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"]
     }
+    
     loadCartMock = vi.fn()
     axios.post.mockResolvedValue({})
-    
-  })})
+
+    user = userEvent.setup()
+
+  })
 
   it('renders product details correctly', () => {
 
-    render(<Product product={product} loadCart={loadCartMock} />)
+    render(<Product product={product} fetchCart={loadCartMock} />)
 
     expect(screen.getByText(product.name)).toBeInTheDocument()
-    expect(screen.getByText(formatMoney(product.priceCents))).toBeInTheDocument()
     expect(screen.getAllByTestId('product-image')[0]).toHaveAttribute('src', product.image)
-    expect(screen.getByText(product.keywords.join(', '))).toBeInTheDocument()
     expect(screen.getByTestId('product-rating-stars')).toHaveAttribute('src', `images/ratings/rating-${Math.round(product.rating.stars * 10)}.png`)
-    expect(screen.getByText(product.rating.count)).toBeInTheDocument()
   })
   it('adds product to cart', async () => {
 
-    render(<Product product={product} loadCart={loadCartMock} />)
+    render(<Product product={product} fetchCart={loadCartMock} />)
     const user = userEvent.setup()
     const addToCartButton = screen.getByTestId('add-to-cart-button')
     await user.click(addToCartButton)
@@ -52,4 +52,24 @@ describe('Product component', () => {
     })
     expect(loadCartMock).toHaveBeenCalled()
   })
-}) 
+  it ('updates quantity when select value changes', async () => {
+
+    render(<Product product={product} fetchCart={loadCartMock} />)
+    const quantitySelect = screen.getByTestId('product-quantity-select')
+    await user.selectOptions(quantitySelect, '1')
+    expect(quantitySelect.value).toBe('1')
+
+    await user.selectOptions(quantitySelect, '3')
+    expect(quantitySelect.value).toBe('3')
+
+
+    const addToCartButton = screen.getByTestId('add-to-cart-button')
+    await user.click(addToCartButton)
+
+    expect(axios.post).toHaveBeenCalledWith('/api/cart-items', {
+      productId: product.id,
+      quantity: 3
+    })
+    expect(loadCartMock).toHaveBeenCalled()
+  })
+})

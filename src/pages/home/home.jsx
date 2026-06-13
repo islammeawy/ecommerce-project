@@ -3,7 +3,7 @@ import { Header } from '../../Components/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ProductGrid } from './ProductGrid';
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 
 export function Home({ cart, fetchCart }) {
   const [products, setProducts] = useState([]);

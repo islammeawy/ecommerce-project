@@ -15,6 +15,7 @@ describe('formatMoney', () => {
   it('should handle negative amounts', () => {
     expect(formatMoney(-1234)).toBe('-$12.34')
     expect(formatMoney(-999)).toBe('-$9.99')
+    expect(formatMoney(-100)).toBe('-$1.00')
   })
   it('should handle large amounts', () => {
     expect(formatMoney(123456789)).toBe('$1,234,567.88')

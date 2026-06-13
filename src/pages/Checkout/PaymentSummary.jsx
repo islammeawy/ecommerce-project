@@ -2,13 +2,13 @@ import { formatPrice } from '../../utils/money'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-export function PaymentSummary({ paymentSummary  , fetchCart }) {
+export function PaymentSummary({ paymentSummary, fetchCart }) {
   const navigate = useNavigate();
   const createOrder = async () => {
     try {
-      await axios.post('/api/orders' , {});
-        await fetchCart(); 
-        navigate('/orders');  
+      await axios.post('/api/orders', {});
+      await fetchCart();
+      navigate('/orders');
       // Clear the cart after order creation
       // Handle successful order creation (e.g., redirect, show confirmation)
     } catch (error) {
@@ -23,27 +23,41 @@ export function PaymentSummary({ paymentSummary  , fetchCart }) {
         Payment Summary
       </div>
 
-      <div className="payment-summary-row">
+      <div
+        className="payment-summary-row"
+        data-testid="payment-summary-product-cost"
+      >
         <div>Items ({paymentSummary ? paymentSummary.totalItems : "Loading..."}):</div>
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.itemsTotalCents) : "Loading..."}</div>
       </div>
 
-      <div className="payment-summary-row">
+      <div
+        data-testid="payment-summary-shipping-cost"
+        className="payment-summary-row">
+
         <div>Shipping &amp; handling:</div>
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.shippingCents) : "Loading..."}</div>
       </div>
 
-      <div className="payment-summary-row subtotal-row">
+      <div
+        data-testid="payment-summary-subtotal"
+        className="payment-summary-row subtotal-row"
+      >
         <div>Total before tax:</div>
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.subtotalCents) : "Loading..."}</div>
       </div>
 
-      <div className="payment-summary-row">
+      <div
+        data-testid="payment-summary-tax"
+        className="payment-summary-row"
+      >
         <div>Estimated tax (10%):</div>
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.taxCents) : "Loading..."}</div>
       </div>
 
-      <div className="payment-summary-row total-row">
+      <div
+        data-testid="payment-summary-total"
+        className="payment-summary-row total-row">
         <div>Order total:</div>
         <div className="payment-summary-money">{paymentSummary ? formatPrice(paymentSummary.totalCents) : "Loading..."}</div>
       </div>
